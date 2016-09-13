@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shop
 {
-    class Milk
+    public class Milk
     {
         private int _cubicCapacity;
         private string _producer;
@@ -29,7 +29,7 @@ namespace Shop
         public double FatContent { get { return _fatContent; } set { _fatContent = value; } }
         public long Price { get { return _price; } set { _price = value; } }
 
-        public bool checkStillUnderGuarantee()
+        public bool CheckStillUnderGuarantee()
         {
             return _bestBefore.CompareTo(DateTime.Now) == 1 ? true : false;
         }
@@ -37,10 +37,10 @@ namespace Shop
         public override string ToString()
         {
             return "Milk{" +
-                "cubicCapacity: " + _cubicCapacity + " ml" +
-                ", producer: '" + _producer + '\'' +
-                ", bestBefore: " + _bestBefore +
-                ", fatContent: " + _fatContent +
+                "cubic capacity: " + _cubicCapacity + " ml" +
+                ", producer: '" + _producer + "'" +
+                ", best before: " + _bestBefore +
+                ", fat content: " + _fatContent +
                 ", price: " + _price + " forint(s)" +
                 '}';
         }
