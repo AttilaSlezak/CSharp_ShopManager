@@ -17,7 +17,7 @@ namespace ShopNunitTests
         [SetUp]
         public void Init()
         {
-            testMilk = new Milk(Milk.LITER, "Plain Milk inc.", testDate, 2.8, 210);
+            testMilk = new Milk(101L, Milk.LITER, "Plain Milk inc.", testDate, 2.8);
         }
 
         [TearDown]
@@ -51,12 +51,6 @@ namespace ShopNunitTests
         }
 
         [Test]
-        public void GetPriceTest()
-        {
-            Assert.AreEqual(210, testMilk.Price);
-        }
-
-        [Test]
         public void checkStillUnderGuaranteeTest()
         {
             Assert.AreEqual(true, testMilk.CheckStillUnderGuarantee());
@@ -66,7 +60,7 @@ namespace ShopNunitTests
         public void ToStringTest()
         {
             Assert.AreEqual("Milk{cubic capacity: 1000 ml, producer: 'Plain Milk inc.', best before: " + testDate +
-                ", fat content: 2,8, price: 210 forint(s)}", testMilk.ToString());
+                ", fat content: 2,8}", testMilk.ToString());
         }
     }
 }

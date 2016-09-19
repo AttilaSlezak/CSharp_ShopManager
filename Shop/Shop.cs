@@ -38,14 +38,55 @@ namespace Shop
 
         public void FillUpMilkCounter(Milk milk)
         {
-            _milkCounter.Add(milk.BarCode, milk);
+            ShopRegistration shopReg = (ShopRegistration)_milkCounter[milk.BarCode];
+            if (shopReg == null)
+            {
+                shopReg = new ShopRegistration(milk, 1, 100);
+                _milkCounter.Add(milk.BarCode, shopReg);
+            }
+            else
+            {
+                shopReg.AddQuantity(1);
+            }
         }
 
         public Milk BuyMilk(long barCode)
         {
-            Milk result = (Milk)_milkCounter[barCode];
-            _milkCounter.Remove(barCode);
-            return result;
+            ShopRegistration shopReg = (ShopRegistration)_milkCounter[barCode];
+            if (shopReg != null)
+            {
+                shopReg.SubtractQuantity(1);
+                return shopReg.GetMilk;
+            }
+            return null;
+        }
+
+        class ShopRegistration
+        {
+            private Milk _milk;
+            private int _quantity;
+            private int _price;
+
+            public Milk GetMilk { get { return _milk; } set { _milk = value; } }
+            public int GetQuantity { get { return _quantity; } set { _quantity = value; } }
+            public int GetPrice { get { return _price; } set { _price = value; } }
+
+            public ShopRegistration(Milk milk, int quantity, int price)
+            {
+                _milk = milk;
+                _quantity = quantity;
+                _price = price;
+            }
+
+            public void AddQuantity(int quantity)
+            {
+                _quantity += quantity;
+            }
+
+            public void SubtractQuantity(int quantity)
+            {
+                _quantity -= quantity;
+            }
         }
     }
 }
