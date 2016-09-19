@@ -14,6 +14,10 @@ namespace Shop
         private Milk[] _milkCounter;
         private int _flag;
 
+        public string Name { get { return _name; }}
+        public string Address { get { return _address; }}
+        public string Owner { get { return _owner; }}
+
         public Shop(string name, string address, string owner, Milk[] milkCounter)
         {
             _name = name;
@@ -23,13 +27,19 @@ namespace Shop
             _flag = milkCounter.Length - 1;
         }
 
-        public string Name { get { return _name; }}
-        public string Address { get { return _address; }}
-        public string Owner { get { return _owner; }}
-        
+        public Shop(string name, string address, string owner) : this(name, address, owner, new Milk[100])
+        {
+            
+        }
+
         public bool IsThereAnyMilk()
         {
             return _flag >= 0;
+        }
+
+        public void FillUpMilkCounter(Milk milk)
+        {
+            _milkCounter[++_flag] = milk;
         }
 
         public Milk BuyMilk()

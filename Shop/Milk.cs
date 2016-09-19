@@ -20,6 +20,12 @@ namespace Shop
         private double _fatContent;
         private long _price;
 
+        public int CubicCapacity { get { return _cubicCapacity; }}
+        public string Producer { get { return _producer; }}
+        public DateTime BestBefore { get { return _bestBefore; }}
+        public double FatContent { get { return _fatContent; }}
+        public long Price { get { return _price; }}
+
         public Milk(int cubicCapacity, String producer, DateTime bestBefore, double fatContent, long price)
         {
             _cubicCapacity = cubicCapacity;
@@ -28,12 +34,6 @@ namespace Shop
             _fatContent = fatContent;
             _price = price;
         }
-
-        public int CubicCapacity { get { return _cubicCapacity; }}
-        public string Producer { get { return _producer; }}
-        public DateTime BestBefore { get { return _bestBefore; }}
-        public double FatContent { get { return _fatContent; }}
-        public long Price { get { return _price; }}
 
         public bool CheckStillUnderGuarantee()
         {
