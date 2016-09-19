@@ -13,7 +13,6 @@ namespace Shop
         private string _address;
         private string _owner;
         private Hashtable _milkCounter;
-        private int _flag;
         
         public string Name { get { return _name; }}
         public string Address { get { return _address; }}
@@ -25,7 +24,6 @@ namespace Shop
             _address = address;
             _owner = owner;
             _milkCounter = milkCounter;
-            _flag = milkCounter.Count - 1;
         }
 
         public Shop(string name, string address, string owner) : this(name, address, owner, new Hashtable())
@@ -40,13 +38,13 @@ namespace Shop
 
         public void FillUpMilkCounter(Milk milk)
         {
-            _milkCounter.Add(++_flag, milk);
+            _milkCounter.Add(milk.BarCode, milk);
         }
 
-        public Milk BuyMilk()
+        public Milk BuyMilk(long barCode)
         {
-            Milk result = (Milk)_milkCounter[_flag];
-            _milkCounter.Remove(_flag--);
+            Milk result = (Milk)_milkCounter[barCode];
+            _milkCounter.Remove(barCode);
             return result;
         }
     }

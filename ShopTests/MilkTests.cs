@@ -17,7 +17,7 @@ namespace Shop.Tests
         [TestInitialize]
         public void SetUp()
         {
-            testMilk = new Milk(Milk.LITER, "Plain Milk inc.", testDate, 2.8, 210);
+            testMilk = new Milk(101L, Milk.LITER, "Plain Milk inc.", testDate, 2.8, 210);
         }
 
         [TestCleanup]
@@ -65,7 +65,7 @@ namespace Shop.Tests
         [TestMethod()]
         public void ToStringTest()
         {
-            Assert.AreEqual("Milk{cubic capacity: 1000 ml, producer: 'Plain Milk inc.', best before: " + testDate + 
+            Assert.AreEqual("Milk{bar code: 101, cubic capacity: 1000 ml, producer: 'Plain Milk inc.', best before: " + testDate + 
                 ", fat content: 2,8, price: 210 forint(s)}", testMilk.ToString());
         }
     }
