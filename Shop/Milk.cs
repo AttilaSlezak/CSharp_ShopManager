@@ -29,11 +29,11 @@ namespace Shop
             _price = price;
         }
 
-        public int CubicCapacity { get { return _cubicCapacity; } set { _cubicCapacity = value; } }
-        public string Producer { get { return _producer; } set { _producer = value; } }
-        public DateTime BestBefore { get { return _bestBefore; } set { _bestBefore = value; } }
-        public double FatContent { get { return _fatContent; } set { _fatContent = value; } }
-        public long Price { get { return _price; } set { _price = value; } }
+        public int CubicCapacity { get { return _cubicCapacity; }}
+        public string Producer { get { return _producer; }}
+        public DateTime BestBefore { get { return _bestBefore; }}
+        public double FatContent { get { return _fatContent; }}
+        public long Price { get { return _price; }}
 
         public bool CheckStillUnderGuarantee()
         {
