@@ -8,56 +8,62 @@ using Shop;
 
 namespace ShopXUnitTests
 {
-    public class MilkTests
+    public class MilkTests : IDisposable
     {
+        Milk testMilk;
+        DateTime testDate = DateTime.Now.AddDays(1);
+
+        public MilkTests()
+        {
+            testMilk = new Milk(Milk.LITER, "Plain Milk inc.", testDate, 2.8, 210);
+        }
+
         [Fact]
         public void GetCubicCapacityTest()
         {
-            Milk milkTest = new Milk(1000, "Plain Milk inc.", new DateTime(2017, 1, 1), 2.8, 210);
-            Assert.Equal(1000, milkTest.CubicCapacity);
+            Assert.Equal(1000, testMilk.CubicCapacity);
         }
 
         [Fact]
         public void GetProducerTest()
         {
-            Milk milkTest = new Milk(1000, "Plain Milk inc.", new DateTime(2017, 1, 1), 2.8, 210);
-            Assert.Equal("Plain Milk inc.", milkTest.Producer);
+            Assert.Equal("Plain Milk inc.", testMilk.Producer);
         }
 
         [Fact]
         public void GetBestBeforeTest()
         {
-            Milk milkTest = new Milk(1000, "Plain Milk inc.", new DateTime(2017, 1, 1), 2.8, 210);
-            Assert.Equal(new DateTime(2017, 1, 1), milkTest.BestBefore);
+            Assert.Equal(testDate, testMilk.BestBefore);
         }
 
         [Fact]
         public void GetFatContentTest()
         {
-            Milk milkTest = new Milk(1000, "Plain Milk inc.", new DateTime(2017, 1, 1), 2.8, 210);
-            Assert.Equal(2.8, milkTest.FatContent);
+            Assert.Equal(2.8, testMilk.FatContent);
         }
 
         [Fact]
         public void GetPriceTest()
         {
-            Milk milkTest = new Milk(1000, "Plain Milk inc.", new DateTime(2017, 1, 1), 2.8, 210);
-            Assert.Equal(210, milkTest.Price);
+            Assert.Equal(210, testMilk.Price);
         }
 
         [Fact]
         public void checkStillUnderGuaranteeTest()
         {
-            Milk milkTest = new Milk(1000, "Plain Milk inc.", DateTime.Now.AddDays(1), 2.8, 210);
-            Assert.Equal(true, milkTest.CheckStillUnderGuarantee());
+            Assert.Equal(true, testMilk.CheckStillUnderGuarantee());
         }
 
         [Fact]
         public void ToStringTest()
         {
-            Milk milkTest = new Milk(1000, "Plain Milk inc.", new DateTime(2017, 1, 1), 2.8, 210);
-            Assert.Equal("Milk{cubic capacity: 1000 ml, producer: 'Plain Milk inc.', best before: 2017.01.01. 0:00:00" +
-                ", fat content: 2,8, price: 210 forint(s)}", milkTest.ToString());
+            Assert.Equal("Milk{cubic capacity: 1000 ml, producer: 'Plain Milk inc.', best before: " + testDate +
+                ", fat content: 2,8, price: 210 forint(s)}", testMilk.ToString());
+        }
+
+        public void Dispose()
+        {
+            testMilk = null;
         }
     }
 }

@@ -8,6 +8,12 @@ namespace Shop
 {
     public class Milk
     {
+        public const int LITER = 1000;
+        public const int HALF_LITER = 500;
+        public const int GLASS = 200;
+        public const double WHOLE_MILK = 2.8;
+        public const double LOW_FAT_MILK = 1.5;
+
         private int _cubicCapacity;
         private string _producer;
         private DateTime _bestBefore;
