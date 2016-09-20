@@ -51,7 +51,7 @@ namespace ShopXUnitTests
         [Fact]
         public void ToStringTest()
         {
-            Assert.Equal("Milk{cubic capacity: 1000 ml, producer: 'Plain Milk inc.', best before: " + testDate +
+            Assert.Equal("Milk{bar code: 101, cubic capacity: 1000 ml, producer: 'Plain Milk inc.', best before: " + testDate +
                 ", fat content: 2,8}", testMilk.ToString());
         }
 

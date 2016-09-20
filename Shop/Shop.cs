@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Shop
 {
-    class Shop
+    public class Shop
     {
         private string _name;
         private string _address;

@@ -44,7 +44,7 @@ namespace Shop
         {
             return "Milk{" +
                 "bar code: " + _barCode +
-                ",cubic capacity: " + _cubicCapacity + " ml" +
+                ", cubic capacity: " + _cubicCapacity + " ml" +
                 ", producer: '" + _producer + "'" +
                 ", best before: " + _bestBefore +
                 ", fat content: " + _fatContent +

@@ -59,7 +59,7 @@ namespace ShopNunitTests
         [Test]
         public void ToStringTest()
         {
-            Assert.AreEqual("Milk{cubic capacity: 1000 ml, producer: 'Plain Milk inc.', best before: " + testDate +
+            Assert.AreEqual("Milk{bar code: 101, cubic capacity: 1000 ml, producer: 'Plain Milk inc.', best before: " + testDate +
                 ", fat content: 2,8}", testMilk.ToString());
         }
     }
