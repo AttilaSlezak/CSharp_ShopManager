@@ -56,7 +56,7 @@ namespace Shop
             if (shopReg != null)
             {
                 shopReg.SubtractQuantity(1);
-                return shopReg.GetMilk;
+                return shopReg.Milk;
             }
             return null;
         }
@@ -67,9 +67,9 @@ namespace Shop
             private int _quantity;
             private int _price;
 
-            public Milk GetMilk { get { return _milk; } set { _milk = value; } }
-            public int GetQuantity { get { return _quantity; } set { _quantity = value; } }
-            public int GetPrice { get { return _price; } set { _price = value; } }
+            public Milk Milk { get { return _milk; } set { _milk = value; } }
+            public int Quantity { get { return _quantity; } set { _quantity = value; } }
+            public int Price { get { return _price; } set { _price = value; } }
 
             public ShopRegistration(Milk milk, int quantity, int price)
             {

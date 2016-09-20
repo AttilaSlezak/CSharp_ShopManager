@@ -14,14 +14,14 @@ namespace Shop.ShopNunitTests
         private Milk _testMilk;
 
         [SetUp]
-        public void SetUp()
+        public void Init()
         {
             _testShop = new Shop("Food Store", "101st Corner Street", "George Warren");
             _testMilk = new Milk(101L, Milk.LITER, "Plain Milk inc.", DateTime.Now.AddDays(1), 2.8);
         }
 
         [TearDown]
-        public void TearDown()
+        public void Dispose()
         {
             _testShop = null;
             _testMilk = null;
