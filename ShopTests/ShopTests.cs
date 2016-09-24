@@ -55,22 +55,22 @@ namespace Shop.Tests
         [TestMethod()]
         public void IsThereAnyMilkIfYesTest()
         {
-            _testShop.ReplenishMilkCounter(_testMilk);
+            _testShop.ReplenishFoodCounter(_testMilk);
             Assert.IsTrue(_testShop.IsThereAnyMilk());
         }
 
         [TestMethod()]
         public void ReplenishMilkCounterTest()
         {
-            _testShop.ReplenishMilkCounter(_testMilk);
+            _testShop.ReplenishFoodCounter(_testMilk);
             Assert.IsTrue(_testShop.IsThereAnyMilk());  
         }
 
         [TestMethod()]
         public void BuyMilkTest()
         {
-            _testShop.ReplenishMilkCounter(_testMilk);
-            Assert.AreEqual(_testMilk, _testShop.BuyMilk(101L));
+            _testShop.ReplenishFoodCounter(_testMilk);
+            Assert.AreEqual(_testMilk, _testShop.BuyFood(101L));
         }
     }
 }

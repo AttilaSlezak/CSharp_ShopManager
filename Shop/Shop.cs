@@ -9,18 +9,18 @@ namespace Shop
         private string _name;
         private string _address;
         private string _owner;
-        private Hashtable _milkCounter;
+        private Hashtable _foodCounter;
         
         public string Name { get { return _name; }}
         public string Address { get { return _address; }}
         public string Owner { get { return _owner; }}
 
-        public Shop(string name, string address, string owner, Hashtable milkCounter)
+        public Shop(string name, string address, string owner, Hashtable foodCounter)
         {
             _name = name;
             _address = address;
             _owner = owner;
-            _milkCounter = milkCounter;
+            _foodCounter = foodCounter;
         }
 
         public Shop(string name, string address, string owner) : this(name, address, owner, new Hashtable())
@@ -28,59 +28,77 @@ namespace Shop
             
         }
 
+        private bool IsThereAnyCertainFood(Type typeSubClass)
+        {
+            foreach (ShopRegister oneShopReg in _foodCounter.Values)
+            {
+                if (typeSubClass.IsInstanceOfType(oneShopReg.Food) && oneShopReg.Quantity > 0)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public bool IsThereAnyMilk()
         {
-            return _milkCounter.Count > 0;
+            return IsThereAnyCertainFood(typeof(Milk));
         }
 
-        public void ReplenishMilkCounter(Milk milk)
+        public bool IsThereAnyCheese()
         {
-            ShopRegister shopReg = (ShopRegister)_milkCounter[milk.Barcode];
-            if (shopReg == null)
-            {
-                shopReg = new ShopRegister(milk, 1, 100);
-                _milkCounter.Add(milk.Barcode, shopReg);
-            }
-            else
-            {
-                shopReg.AddQuantity(1);
-            }
+            return IsThereAnyCertainFood(typeof(Cheese));
         }
 
-        public Milk BuyMilk(long barCode)
+        public void ReplenishFoodCounter(long barcode, long quantity)
         {
-            ShopRegister shopReg = (ShopRegister)_milkCounter[barCode];
+            ShopRegister shopReg = (ShopRegister)_foodCounter[barcode];
+            shopReg.AddQuantity(quantity);
+        }
+
+        public void AddNewFoodToFoodCounter(Food food, long quantity, long price)
+        {
+            ShopRegister shopReg = new ShopRegister(food, quantity, price);
+            _foodCounter.Add(food.Barcode, shopReg);
+        }
+
+        public void RemoveFoodFromFoodCounter(long barcode)
+        {
+            _foodCounter.Remove(barcode);
+        }
+
+        public void BuyFood(long barCode, long quantity)
+        {
+            ShopRegister shopReg = (ShopRegister)_foodCounter[barCode];
             if (shopReg != null)
             {
-                shopReg.SubtractQuantity(1);
-                return shopReg.Milk;
+                shopReg.SubtractQuantity(quantity);
             }
-            return null;
         }
 
         class ShopRegister
         {
-            private Milk _milk;
-            private int _quantity;
-            private int _price;
+            private Food _food;
+            private long _quantity;
+            private long _price;
 
-            public Milk Milk { get { return _milk; } set { _milk = value; } }
-            public int Quantity { get { return _quantity; } set { _quantity = value; } }
-            public int Price { get { return _price; } set { _price = value; } }
+            public Food Food { get { return _food; } set { _food = value; } }
+            public long Quantity { get { return _quantity; } set { _quantity = value; } }
+            public long Price { get { return _price; } set { _price = value; } }
 
-            public ShopRegister(Milk milk, int quantity, int price)
+            public ShopRegister(Food food, long quantity, long price)
             {
-                _milk = milk;
+                _food = food;
                 _quantity = quantity;
                 _price = price;
             }
 
-            public void AddQuantity(int quantity)
+            public void AddQuantity(long quantity)
             {
                 _quantity += quantity;
             }
 
-            public void SubtractQuantity(int quantity)
+            public void SubtractQuantity(long quantity)
             {
                 _quantity -= quantity;
             }

@@ -53,22 +53,22 @@ namespace ShopXUnitTests
         [Fact]
         public void IsThereAnyMilkIfYesTest()
         {
-            _testShop.ReplenishMilkCounter(_testMilk);
+            _testShop.ReplenishFoodCounter(_testMilk);
             Assert.True(_testShop.IsThereAnyMilk());
         }
 
         [Fact]
         public void ReplenishMilkCounterTest()
         {
-            _testShop.ReplenishMilkCounter(_testMilk);
+            _testShop.ReplenishFoodCounter(_testMilk);
             Assert.True(_testShop.IsThereAnyMilk());
         }
 
         [Fact]
         public void BuyMilkTest()
         {
-            _testShop.ReplenishMilkCounter(_testMilk);
-            Assert.Equal(_testMilk, _testShop.BuyMilk(101L));
+            _testShop.ReplenishFoodCounter(_testMilk);
+            Assert.Equal(_testMilk, _testShop.BuyFood(101L));
         }
     }
 }
