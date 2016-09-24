@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shop
 {
-    public class Milk
+    public abstract class Milk
     {
         public const int LITER = 1000;
         public const int HALF_LITER = 500;
