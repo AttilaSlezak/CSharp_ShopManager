@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using Shop;
 
@@ -17,13 +13,19 @@ namespace ShopNunitTests
         [SetUp]
         public void Init()
         {
-            testMilk = new Milk(101L, Milk.LITER, "Plain Milk inc.", testDate, 2.8);
+            testMilk = new Milk(101L, Milk.LITER, "Plain Milk inc.", testDate, Milk.WHOLE_MILK);
         }
 
         [TearDown]
         public void Dispose()
         {
             testMilk = null;
+        }
+
+        [Test]
+        public void GetBarcode()
+        {
+            Assert.AreEqual(101, testMilk.Barcode);
         }
 
         [Test]
@@ -59,8 +61,8 @@ namespace ShopNunitTests
         [Test]
         public void ToStringTest()
         {
-            Assert.AreEqual("Milk{bar code: 101, cubic capacity: 1000 ml, producer: 'Plain Milk inc.', best before: " + testDate +
-                ", fat content: 2,8}", testMilk.ToString());
+            Assert.AreEqual("Milk{barcode: 101, cubic capacity: 1000 ml, producer: 'Plain Milk inc.', best before: " + testDate +
+                ", fat content: 2,8%}", testMilk.ToString());
         }
     }
 }

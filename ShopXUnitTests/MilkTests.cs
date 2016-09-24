@@ -15,7 +15,13 @@ namespace ShopXUnitTests
 
         public MilkTests()
         {
-            testMilk = new Milk(101L, Milk.LITER, "Plain Milk inc.", testDate, 2.8);
+            testMilk = new Milk(101L, Milk.LITER, "Plain Milk inc.", testDate, Milk.WHOLE_MILK);
+        }
+
+        [Fact]
+        public void GetBarcode()
+        {
+            Assert.Equal(101, testMilk.Barcode);
         }
 
         [Fact]
@@ -51,8 +57,8 @@ namespace ShopXUnitTests
         [Fact]
         public void ToStringTest()
         {
-            Assert.Equal("Milk{bar code: 101, cubic capacity: 1000 ml, producer: 'Plain Milk inc.', best before: " + testDate +
-                ", fat content: 2,8}", testMilk.ToString());
+            Assert.Equal("Milk{barcode: 101, cubic capacity: 1000 ml, producer: 'Plain Milk inc.', best before: " + testDate +
+                ", fat content: 2,8%}", testMilk.ToString());
         }
 
         public void Dispose()

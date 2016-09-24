@@ -1,10 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Shop;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Shop.Tests
 {
@@ -17,13 +13,19 @@ namespace Shop.Tests
         [TestInitialize]
         public void SetUp()
         {
-            testMilk = new Milk(101L, Milk.LITER, "Plain Milk inc.", testDate, 2.8);
+            testMilk = new Milk(101L, Milk.LITER, "Plain Milk inc.", testDate, Milk.WHOLE_MILK);
         }
 
         [TestCleanup]
         public void TearDown()
         {
             testMilk = null;
+        }
+
+        [TestMethod()]
+        public void GetBarcode()
+        {
+            Assert.AreEqual(101, testMilk.Barcode);
         }
 
         [TestMethod()]
@@ -59,8 +61,8 @@ namespace Shop.Tests
         [TestMethod()]
         public void ToStringTest()
         {
-            Assert.AreEqual("Milk{bar code: 101, cubic capacity: 1000 ml, producer: 'Plain Milk inc.', best before: " + testDate + 
-                ", fat content: 2,8}", testMilk.ToString());
+            Assert.AreEqual("Milk{barcode: 101, cubic capacity: 1000 ml, producer: 'Plain Milk inc.', best before: " + testDate + 
+                ", fat content: 2,8%}", testMilk.ToString());
         }
     }
 }

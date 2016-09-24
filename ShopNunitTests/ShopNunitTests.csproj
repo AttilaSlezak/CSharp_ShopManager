@@ -46,7 +46,7 @@
   <ItemGroup>
     <Compile Include="MilkTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShopRegistrationTests.cs" />
+    <Compile Include="ShopRegisterTests.cs" />
     <Compile Include="ShopTests.cs" />
   </ItemGroup>
   <ItemGroup>

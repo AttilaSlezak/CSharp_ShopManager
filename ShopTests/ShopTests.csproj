@@ -56,7 +56,7 @@
     <Compile Include="MilkTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShopTests.cs" />
-    <Compile Include="ShopRegistrationTests.cs" />
+    <Compile Include="ShopRegisterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shop\Shop.csproj">

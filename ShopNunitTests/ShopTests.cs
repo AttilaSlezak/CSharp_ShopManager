@@ -17,7 +17,7 @@ namespace Shop.ShopNunitTests
         public void Init()
         {
             _testShop = new Shop("Food Store", "101st Corner Street", "George Warren");
-            _testMilk = new Milk(101L, Milk.LITER, "Plain Milk inc.", DateTime.Now.AddDays(1), 2.8);
+            _testMilk = new Milk(101L, Milk.LITER, "Plain Milk inc.", DateTime.Now.AddDays(1), Milk.WHOLE_MILK);
         }
 
         [TearDown]
@@ -54,21 +54,21 @@ namespace Shop.ShopNunitTests
         [Test]
         public void IsThereAnyMilkIfYesTest()
         {
-            _testShop.FillUpMilkCounter(_testMilk);
+            _testShop.ReplenishMilkCounter(_testMilk);
             Assert.IsTrue(_testShop.IsThereAnyMilk());
         }
 
         [Test]
-        public void FillUpMilkCounterTest()
+        public void ReplenishMilkCounterTest()
         {
-            _testShop.FillUpMilkCounter(_testMilk);
+            _testShop.ReplenishMilkCounter(_testMilk);
             Assert.IsTrue(_testShop.IsThereAnyMilk());
         }
 
         [Test]
         public void BuyMilkTest()
         {
-            _testShop.FillUpMilkCounter(_testMilk);
+            _testShop.ReplenishMilkCounter(_testMilk);
             Assert.AreEqual(_testMilk, _testShop.BuyMilk(101L));
         }
     }

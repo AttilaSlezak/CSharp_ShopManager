@@ -14,21 +14,21 @@ namespace Shop
         public const double WHOLE_MILK = 2.8;
         public const double LOW_FAT_MILK = 1.5;
 
-        private long _barCode;
+        private long _barcode;
         private int _cubicCapacity;
         private string _producer;
         private DateTime _bestBefore;
         private double _fatContent;
 
-        public long BarCode { get { return _barCode; } }
+        public long Barcode { get { return _barcode; } }
         public int CubicCapacity { get { return _cubicCapacity; }}
         public string Producer { get { return _producer; }}
         public DateTime BestBefore { get { return _bestBefore; }}
         public double FatContent { get { return _fatContent; }}
            
-        public Milk(long barCode, int cubicCapacity, String producer, DateTime bestBefore, double fatContent)
+        public Milk(long barcode, int cubicCapacity, String producer, DateTime bestBefore, double fatContent)
         {
-            _barCode = barCode;
+            _barcode = barcode;
             _cubicCapacity = cubicCapacity;
             _producer = producer;
             _bestBefore = bestBefore;
@@ -43,12 +43,11 @@ namespace Shop
         public override string ToString()
         {
             return "Milk{" +
-                "bar code: " + _barCode +
+                "barcode: " + _barcode +
                 ", cubic capacity: " + _cubicCapacity + " ml" +
                 ", producer: '" + _producer + "'" +
                 ", best before: " + _bestBefore +
-                ", fat content: " + _fatContent +
-                '}';
+                ", fat content: " + _fatContent + "%}";
         }
     }
 }

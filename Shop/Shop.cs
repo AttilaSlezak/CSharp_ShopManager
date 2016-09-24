@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Shop
 {
@@ -36,13 +33,13 @@ namespace Shop
             return _milkCounter.Count > 0;
         }
 
-        public void FillUpMilkCounter(Milk milk)
+        public void ReplenishMilkCounter(Milk milk)
         {
-            ShopRegistration shopReg = (ShopRegistration)_milkCounter[milk.BarCode];
+            ShopRegister shopReg = (ShopRegister)_milkCounter[milk.Barcode];
             if (shopReg == null)
             {
-                shopReg = new ShopRegistration(milk, 1, 100);
-                _milkCounter.Add(milk.BarCode, shopReg);
+                shopReg = new ShopRegister(milk, 1, 100);
+                _milkCounter.Add(milk.Barcode, shopReg);
             }
             else
             {
@@ -52,7 +49,7 @@ namespace Shop
 
         public Milk BuyMilk(long barCode)
         {
-            ShopRegistration shopReg = (ShopRegistration)_milkCounter[barCode];
+            ShopRegister shopReg = (ShopRegister)_milkCounter[barCode];
             if (shopReg != null)
             {
                 shopReg.SubtractQuantity(1);
@@ -61,7 +58,7 @@ namespace Shop
             return null;
         }
 
-        class ShopRegistration
+        class ShopRegister
         {
             private Milk _milk;
             private int _quantity;
@@ -71,7 +68,7 @@ namespace Shop
             public int Quantity { get { return _quantity; } set { _quantity = value; } }
             public int Price { get { return _price; } set { _price = value; } }
 
-            public ShopRegistration(Milk milk, int quantity, int price)
+            public ShopRegister(Milk milk, int quantity, int price)
             {
                 _milk = milk;
                 _quantity = quantity;
