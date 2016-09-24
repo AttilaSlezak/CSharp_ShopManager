@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shop
 {
-    public abstract class Milk
+    public abstract class Milk : Food
     {
         public const int LITER = 1000;
         public const int HALF_LITER = 500;
@@ -14,39 +14,25 @@ namespace Shop
         public const double WHOLE_MILK = 2.8;
         public const double LOW_FAT_MILK = 1.5;
 
-        private long _barcode;
         private int _cubicCapacity;
-        private string _producer;
-        private DateTime _bestBefore;
         private double _fatContent;
 
-        public long Barcode { get { return _barcode; } }
         public int CubicCapacity { get { return _cubicCapacity; }}
-        public string Producer { get { return _producer; }}
-        public DateTime BestBefore { get { return _bestBefore; }}
         public double FatContent { get { return _fatContent; }}
            
-        public Milk(long barcode, int cubicCapacity, String producer, DateTime bestBefore, double fatContent)
+        public Milk(long barcode, int cubicCapacity, string producer, DateTime bestBefore, double fatContent) : base(barcode, producer, bestBefore)
         {
-            _barcode = barcode;
             _cubicCapacity = cubicCapacity;
-            _producer = producer;
-            _bestBefore = bestBefore;
             _fatContent = fatContent;
-        }
-
-        public bool CheckStillUnderGuarantee()
-        {
-            return _bestBefore.CompareTo(DateTime.Now) == 1 ? true : false;
         }
 
         public override string ToString()
         {
             return "Milk{" +
-                "barcode: " + _barcode +
+                "barcode: " + Barcode +
                 ", cubic capacity: " + _cubicCapacity + " ml" +
-                ", producer: '" + _producer + "'" +
-                ", best before: " + _bestBefore +
+                ", producer: '" + Producer + "'" +
+                ", best before: " + BestBefore +
                 ", fat content: " + _fatContent + "%}";
         }
     }
