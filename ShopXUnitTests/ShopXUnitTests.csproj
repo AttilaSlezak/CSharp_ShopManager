@@ -68,6 +68,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AuxiliaryClassesForTesting\AuxiliaryClassesForTesting.csproj">
+      <Project>{c352df6d-54d6-41e3-a1ad-054371c876a5}</Project>
+      <Name>AuxiliaryClassesForTesting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MockObjects\MockObjects.csproj">
+      <Project>{BC12D074-C02D-4355-BB3D-5136CDE299F0}</Project>
+      <Name>MockObjects</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Shop\Shop.csproj">
       <Project>{3a0ae258-5b10-4384-bc40-bcd3b16242d3}</Project>
       <Name>Shop</Name>

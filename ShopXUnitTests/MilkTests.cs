@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 using Shop;
+using MockObjects;
 
 namespace ShopXUnitTests
 {
@@ -15,13 +16,13 @@ namespace ShopXUnitTests
 
         public MilkTests()
         {
-            testMilk = new Milk(101L, Milk.LITER, "Plain Milk inc.", testDate, Milk.WHOLE_MILK);
+            testMilk = new MilkMock(101L, Milk.LITER, "Plain Milk inc.", testDate, Milk.WHOLE_MILK);
         }
 
         [Fact]
         public void GetBarcode()
         {
-            Assert.Equal(101, testMilk.Barcode);
+            Assert.Equal(101L, testMilk.Barcode);
         }
 
         [Fact]
@@ -51,7 +52,7 @@ namespace ShopXUnitTests
         [Fact]
         public void checkStillUnderGuaranteeTest()
         {
-            Assert.Equal(true, testMilk.CheckStillUnderGuarantee());
+            Assert.True(testMilk.CheckStillUnderGuarantee());
         }
 
         [Fact]

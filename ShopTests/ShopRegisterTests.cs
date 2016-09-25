@@ -16,7 +16,7 @@ namespace Shop.ShopRegistrationTests
         public void SetUp()
         {
             // Shop testShop = new Shop("Food Store", "101st Corner Street", "George Warren");
-            _testMilk = new Milk(101L, Milk.LITER, "Plain Milk inc.", DateTime.Now.AddDays(1), Milk.WHOLE_MILK);
+            _testMilk = MilkFactory.NewLongLifeMilk(101L, Milk.LITER, "Plain Milk inc.", DateTime.Now.AddDays(1), Milk.WHOLE_MILK);
             
             Type typeShop = typeof(Shop);
             Type[] typeShopReg = typeShop.GetNestedTypes(BindingFlags.NonPublic);
@@ -67,7 +67,7 @@ namespace Shop.ShopRegistrationTests
         [TestMethod]
         public void SetMilkTest()
         {
-            Milk milk = new Milk(201L, Milk.HALF_LITER, "Plain Milk inc.", new DateTime(), Milk.LOW_FAT_MILK);
+            Milk milk = MilkFactory.NewSemiLongLifeMilk(201L, Milk.HALF_LITER, "Plain Milk inc.", new DateTime(), Milk.LOW_FAT_MILK);
             SetObjectInCertainMethod("set_Milk", milk);
             Milk resultMilk = (Milk)GetObjectFromCertainMethod("get_Milk");
             Assert.AreEqual(resultMilk, milk);

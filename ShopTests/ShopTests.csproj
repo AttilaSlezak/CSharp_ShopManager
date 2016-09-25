@@ -59,6 +59,14 @@
     <Compile Include="ShopRegisterTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AuxiliaryClassesForTesting\AuxiliaryClassesForTesting.csproj">
+      <Project>{C352DF6D-54D6-41E3-A1AD-054371C876A5}</Project>
+      <Name>AuxiliaryClassesForTesting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MockObjects\MockObjects.csproj">
+      <Project>{BC12D074-C02D-4355-BB3D-5136CDE299F0}</Project>
+      <Name>MockObjects</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Shop\Shop.csproj">
       <Project>{3A0AE258-5B10-4384-BC40-BCD3B16242D3}</Project>
       <Name>Shop</Name>

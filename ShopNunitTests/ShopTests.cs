@@ -1,23 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
-using Shop;
+using System.Reflection;
+using System.Collections;
+using static AuxiliaryClassesForTesting.PrivateDataAccessor;
 
 namespace Shop.ShopNunitTests
 {
     class ShopTests
     {
+        private MethodInfo[] _methodsShopPrivate = typeof(Shop).GetMethods(BindingFlags.NonPublic | BindingFlags.Instance);
+        private MethodInfo[] _methodsShopReg = typeof(Shop).GetNestedTypes(BindingFlags.NonPublic)[0].GetMethods();
+        private Hashtable _testShopFoodCounter;
         private Shop _testShop;
         private Milk _testMilk;
+        private Cheese _testCheese;
 
         [SetUp]
         public void Init()
         {
             _testShop = new Shop("Food Store", "101st Corner Street", "George Warren");
-            _testMilk = new Milk(101L, Milk.LITER, "Plain Milk inc.", DateTime.Now.AddDays(1), Milk.WHOLE_MILK);
+            _testMilk = MilkFactory.NewLongLifeMilk(101L, Milk.LITER, "Plain Milk inc.", DateTime.Now.AddDays(1), Milk.WHOLE_MILK);
+            _testCheese = new Cheese(120L, 700, "Normand Cheese inc.", DateTime.Now.AddDays(1), 40.0);
+            FieldInfo fieldFoodCounter = typeof(Shop).GetField("_foodCounter", BindingFlags.Instance | BindingFlags.NonPublic);
+            _testShopFoodCounter = (Hashtable)fieldFoodCounter.GetValue(_testShop);
         }
 
         [TearDown]
@@ -25,6 +30,8 @@ namespace Shop.ShopNunitTests
         {
             _testShop = null;
             _testMilk = null;
+            _testCheese = null;
+            _testShopFoodCounter = null;
         }
 
         [Test]
@@ -48,28 +55,74 @@ namespace Shop.ShopNunitTests
         [Test]
         public void IsThereAnyMilkIfNotTest()
         {
-            Assert.IsFalse(_testShop.IsThereAnyMilk());
+            Assert.False(_testShop.IsThereAnyMilk());
         }
 
         [Test]
         public void IsThereAnyMilkIfYesTest()
         {
-            _testShop.ReplenishFoodCounter(_testMilk);
-            Assert.IsTrue(_testShop.IsThereAnyMilk());
+            _testShop.AddNewFoodToFoodCounter(_testMilk, 1L, 100);
+            Assert.True(_testShop.IsThereAnyMilk());
         }
 
         [Test]
-        public void ReplenishMilkCounterTest()
+        public void IsThereAnyCheeseIfNotTest()
         {
-            _testShop.ReplenishFoodCounter(_testMilk);
-            Assert.IsTrue(_testShop.IsThereAnyMilk());
+            Assert.False(_testShop.IsThereAnyCheese());
+        }
+
+        [Test]
+        public void IsThereAnyCheeseIfYesTest()
+        {
+            _testShop.AddNewFoodToFoodCounter(_testCheese, 1L, 100);
+            Assert.True(_testShop.IsThereAnyCheese());
+        }
+
+        [Test]
+        public void IsThereAnyCertainFoodIfNot()
+        {
+            _testShop.AddNewFoodToFoodCounter(_testMilk, 3L, 100L);
+            bool result = (bool)GetObjectFromCertainMethod("IsThereAnyCertainFood", _methodsShopPrivate, _testShop, typeof(Cheese));
+            Assert.False(result);
+        }
+
+        [Test]
+        public void IsThereAnyCertainFoodIfYes()
+        {
+            _testShop.AddNewFoodToFoodCounter(_testCheese, 5L, 200L);
+            bool result = (bool)GetObjectFromCertainMethod("IsThereAnyCertainFood", _methodsShopPrivate, _testShop, typeof(Cheese));
+            Assert.True(result);
+        }
+
+        [Test]
+        public void AddNewFoodToFoodCounterTest()
+        {
+            _testShop.AddNewFoodToFoodCounter(_testMilk, 3L, 100L);
+            Assert.AreEqual(3L, GetObjectFromCertainMethod("get_Quantity", _methodsShopReg, _testShopFoodCounter[_testMilk.Barcode]));
+        }
+
+        [Test]
+        public void ReplenishFoodCounterTest()
+        {
+            _testShop.AddNewFoodToFoodCounter(_testMilk, 3L, 100L);
+            _testShop.ReplenishFoodCounter(_testMilk.Barcode, 2L);
+            Assert.AreEqual(5L, GetObjectFromCertainMethod("get_Quantity", _methodsShopReg, _testShopFoodCounter[_testMilk.Barcode]));
+        }
+
+        [Test]
+        public void RemoveFoodFromFoodCounterTest()
+        {
+            _testShop.AddNewFoodToFoodCounter(_testMilk, 3L, 100L);
+            _testShop.RemoveFoodFromFoodCounter(_testMilk.Barcode);
+            Assert.False(_testShopFoodCounter.ContainsKey(_testMilk.Barcode));
         }
 
         [Test]
         public void BuyMilkTest()
         {
-            _testShop.ReplenishFoodCounter(_testMilk);
-            Assert.AreEqual(_testMilk, _testShop.BuyFood(101L));
+            _testShop.AddNewFoodToFoodCounter(_testMilk, 3L, 100L);
+            _testShop.BuyFood(_testMilk.Barcode, 2L);
+            Assert.AreEqual(1L, GetObjectFromCertainMethod("get_Quantity", _methodsShopReg, _testShopFoodCounter[_testMilk.Barcode]));
         }
     }
 }

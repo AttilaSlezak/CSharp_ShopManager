@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MockObjects;
 using System;
 
 
@@ -13,7 +14,7 @@ namespace Shop.Tests
         [TestInitialize]
         public void SetUp()
         {
-            testMilk = new Milk(101L, Milk.LITER, "Plain Milk inc.", testDate, Milk.WHOLE_MILK);
+            testMilk = new MilkMock(101L, Milk.LITER, "Plain Milk inc.", testDate, Milk.WHOLE_MILK);
         }
 
         [TestCleanup]
@@ -25,7 +26,7 @@ namespace Shop.Tests
         [TestMethod()]
         public void GetBarcode()
         {
-            Assert.AreEqual(101, testMilk.Barcode);
+            Assert.AreEqual(101L, testMilk.Barcode);
         }
 
         [TestMethod()]
@@ -55,7 +56,7 @@ namespace Shop.Tests
         [TestMethod()]
         public void checkStillUnderGuaranteeTest()
         {
-            Assert.AreEqual(true, testMilk.CheckStillUnderGuarantee());
+            Assert.IsTrue(testMilk.CheckStillUnderGuarantee());
         }
 
         [TestMethod()]

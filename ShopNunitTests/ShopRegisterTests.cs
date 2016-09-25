@@ -18,7 +18,7 @@ namespace ShopNunitTests
         [SetUp]
         public void Init()
         {
-            _testMilk = new Milk(101L, Milk.LITER, "Plain Milk inc.", DateTime.Now.AddDays(1), Milk.WHOLE_MILK);
+            _testMilk = MilkFactory.NewLongLifeMilk(101L, Milk.LITER, "Plain Milk inc.", DateTime.Now.AddDays(1), Milk.WHOLE_MILK);
 
             Type typeShop = typeof(Shop.Shop);
             Type[] typeShopReg = typeShop.GetNestedTypes(BindingFlags.NonPublic);
@@ -69,7 +69,7 @@ namespace ShopNunitTests
         [Test]
         public void SetMilkTest()
         {
-            Milk milk = new Milk(201L, Milk.HALF_LITER, "Plain Milk inc.", new DateTime(), Milk.LOW_FAT_MILK);
+            Milk milk = MilkFactory.NewSemiLongLifeMilk(201L, Milk.HALF_LITER, "Plain Milk inc.", new DateTime(), Milk.LOW_FAT_MILK);
             SetObjectInCertainMethod("set_Milk", milk);
             Milk resultMilk = (Milk)GetObjectFromCertainMethod("get_Milk");
             Assert.AreEqual(resultMilk, milk);

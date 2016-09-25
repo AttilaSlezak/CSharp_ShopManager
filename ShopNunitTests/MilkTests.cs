@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using Shop;
+using MockObjects;
 
 namespace ShopNunitTests
 {
@@ -13,7 +14,7 @@ namespace ShopNunitTests
         [SetUp]
         public void Init()
         {
-            testMilk = new Milk(101L, Milk.LITER, "Plain Milk inc.", testDate, Milk.WHOLE_MILK);
+            testMilk = new MilkMock(101L, Milk.LITER, "Plain Milk inc.", testDate, Milk.WHOLE_MILK);
         }
 
         [TearDown]
@@ -25,7 +26,7 @@ namespace ShopNunitTests
         [Test]
         public void GetBarcode()
         {
-            Assert.AreEqual(101, testMilk.Barcode);
+            Assert.AreEqual(101L, testMilk.Barcode);
         }
 
         [Test]
@@ -55,7 +56,7 @@ namespace ShopNunitTests
         [Test]
         public void checkStillUnderGuaranteeTest()
         {
-            Assert.AreEqual(true, testMilk.CheckStillUnderGuarantee());
+            Assert.True(testMilk.CheckStillUnderGuarantee());
         }
 
         [Test]
