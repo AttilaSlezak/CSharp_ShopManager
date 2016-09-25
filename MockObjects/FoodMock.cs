@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MockObjects
 {
-    class FoodMock : Food
+    public class FoodMock : Food
     {
         public FoodMock(long barcode, string producer, DateTime bestBefore) : base(barcode, producer, bestBefore)
         {

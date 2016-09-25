@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FoodTests.cs" />
     <Compile Include="MilkFactoryTests.cs" />
     <Compile Include="MilkTests.cs" />
     <Compile Include="PrivateDataAccessorTests.cs" />

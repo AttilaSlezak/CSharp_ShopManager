@@ -11,60 +11,60 @@ namespace ShopXUnitTests
 {
     public class MilkTests : IDisposable
     {
-        Milk testMilk;
-        DateTime testDate = DateTime.Now.AddDays(1);
+        private Milk _testMilk;
+        private DateTime _testDate = DateTime.Now.AddDays(1);
 
         public MilkTests()
         {
-            testMilk = new MilkMock(101L, Milk.LITER, "Plain Milk inc.", testDate, Milk.WHOLE_MILK);
+            _testMilk = new MilkMock(101L, Milk.LITER, "Plain Milk inc.", _testDate, Milk.WHOLE_MILK);
         }
 
         [Fact]
         public void GetBarcodeTest()
         {
-            Assert.Equal(101L, testMilk.Barcode);
+            Assert.Equal(101L, _testMilk.Barcode);
         }
 
         [Fact]
         public void GetCubicCapacityTest()
         {
-            Assert.Equal(1000, testMilk.CubicCapacity);
+            Assert.Equal(1000, _testMilk.CubicCapacity);
         }
 
         [Fact]
         public void GetProducerTest()
         {
-            Assert.Equal("Plain Milk inc.", testMilk.Producer);
+            Assert.Equal("Plain Milk inc.", _testMilk.Producer);
         }
 
         [Fact]
         public void GetBestBeforeTest()
         {
-            Assert.Equal(testDate, testMilk.BestBefore);
+            Assert.Equal(_testDate, _testMilk.BestBefore);
         }
 
         [Fact]
         public void GetFatContentTest()
         {
-            Assert.Equal(2.8, testMilk.FatContent);
+            Assert.Equal(2.8, _testMilk.FatContent);
         }
 
         [Fact]
         public void checkStillUnderGuaranteeTest()
         {
-            Assert.True(testMilk.CheckStillUnderGuarantee());
+            Assert.True(_testMilk.CheckStillUnderGuarantee());
         }
 
         [Fact]
         public void ToStringTest()
         {
-            Assert.Equal("Milk{barcode: 101, cubic capacity: 1000 ml, producer: 'Plain Milk inc.', best before: " + testDate +
-                ", fat content: 2,8%}", testMilk.ToString());
+            Assert.Equal("Milk{barcode: 101, cubic capacity: 1000 ml, producer: 'Plain Milk inc.', best before: " + _testDate +
+                ", fat content: 2,8%}", _testMilk.ToString());
         }
 
         public void Dispose()
         {
-            testMilk = null;
+            _testMilk = null;
         }
     }
 }
