@@ -20,7 +20,7 @@ namespace ShopXUnitTests
         }
 
         [Fact]
-        public void GetBarcode()
+        public void GetBarcodeTest()
         {
             Assert.Equal(101L, testMilk.Barcode);
         }

@@ -24,7 +24,7 @@ namespace ShopNunitTests
         }
 
         [Test]
-        public void GetBarcode()
+        public void GetBarcodeTest()
         {
             Assert.AreEqual(101L, testMilk.Barcode);
         }

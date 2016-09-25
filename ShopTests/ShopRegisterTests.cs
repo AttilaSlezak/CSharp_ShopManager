@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
-using Shop;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static AuxiliaryClassesForTesting.PrivateDataAccessor;
 
 namespace Shop.ShopRegistrationTests
 {
@@ -15,13 +15,12 @@ namespace Shop.ShopRegistrationTests
         [TestInitialize]
         public void SetUp()
         {
-            // Shop testShop = new Shop("Food Store", "101st Corner Street", "George Warren");
             _testMilk = MilkFactory.NewLongLifeMilk(101L, Milk.LITER, "Plain Milk inc.", DateTime.Now.AddDays(1), Milk.WHOLE_MILK);
-            
+
             Type typeShop = typeof(Shop);
             Type[] typeShopReg = typeShop.GetNestedTypes(BindingFlags.NonPublic);
             ConstructorInfo constShopReg = typeShopReg[0].GetConstructors()[0];
-            _objShopReg = constShopReg.Invoke(new object[] { _testMilk, 3, 100});
+            _objShopReg = constShopReg.Invoke(new object[] { _testMilk, 3, 100 });
         }
 
         [TestCleanup]
@@ -31,92 +30,70 @@ namespace Shop.ShopRegistrationTests
             _objShopReg = null;
         }
 
-        private object GetObjectFromCertainMethod(string methodName)
-        {
-            object result = null;
-            foreach (MethodInfo oneMethod in _methodsShopReg)
-            {
-                if (oneMethod.Name == methodName)
-                {
-                    result = oneMethod.Invoke(_objShopReg, new object[] { });
-                    break;
-                }
-            }
-            return result;
-        }
-
-        private void SetObjectInCertainMethod(string methodName, object newObj)
-        { 
-            foreach (MethodInfo oneMethod in _methodsShopReg)
-            {
-                if (oneMethod.Name == methodName)
-                {
-                    oneMethod.Invoke(_objShopReg, new object[] { newObj });
-                    break;
-                }
-            }
-        }
-
         [TestMethod]
-        public void GetMilkTest()
+        public void GetFoodTest()
         {
-            Milk milk = (Milk)GetObjectFromCertainMethod("get_Milk");
+            Milk milk = (Milk)GetObjectFromCertainMethod("get_Food", _methodsShopReg, _objShopReg);
             Assert.AreEqual(_testMilk, milk);
         }
 
         [TestMethod]
-        public void SetMilkTest()
+        public void SetFoodTest()
         {
             Milk milk = MilkFactory.NewSemiLongLifeMilk(201L, Milk.HALF_LITER, "Plain Milk inc.", new DateTime(), Milk.LOW_FAT_MILK);
-            SetObjectInCertainMethod("set_Milk", milk);
-            Milk resultMilk = (Milk)GetObjectFromCertainMethod("get_Milk");
+            SetObjectInCertainMethod("set_Food", _methodsShopReg, _objShopReg, milk);
+            Milk resultMilk = (Milk)GetObjectFromCertainMethod("get_Food", _methodsShopReg, _objShopReg);
             Assert.AreEqual(resultMilk, milk);
         }
 
         [TestMethod]
         public void GetQuantityTest()
         {
-            int quantity = (int)GetObjectFromCertainMethod("get_Quantity");
-            Assert.AreEqual(3, quantity);
+            long quantity = (long)GetObjectFromCertainMethod("get_Quantity", _methodsShopReg, _objShopReg);
+            Assert.AreEqual(3L, quantity);
         }
 
         [TestMethod]
         public void SetQuantityTest()
         {
-            SetObjectInCertainMethod("set_Quantity", 10);
-            int resultQuantity = (int)GetObjectFromCertainMethod("get_Quantity");
-            Assert.AreEqual(10, resultQuantity);
+            SetObjectInCertainMethod("set_Quantity", _methodsShopReg, _objShopReg, 10L);
+            long resultQuantity = (long)GetObjectFromCertainMethod("get_Quantity", _methodsShopReg, _objShopReg);
+            Assert.AreEqual(10L, resultQuantity);
         }
 
         [TestMethod]
         public void AddQuantityTest()
         {
-            SetObjectInCertainMethod("AddQuantity", 5);
-            int resultQuantity = (int)GetObjectFromCertainMethod("get_Quantity");
-            Assert.AreEqual(8, resultQuantity);
+            long quantity = (long)GetObjectFromCertainMethod("get_Quantity", _methodsShopReg, _objShopReg);
+            long difference = 5L;
+            SetObjectInCertainMethod("AddQuantity", _methodsShopReg, _objShopReg, difference);
+            long resultQuantity = (long)GetObjectFromCertainMethod("get_Quantity", _methodsShopReg, _objShopReg);
+            Assert.AreEqual(quantity + difference, resultQuantity);
         }
 
         [TestMethod]
         public void SubtractQuantityTest()
         {
-            SetObjectInCertainMethod("SubtractQuantity", 2);
-            int resultQuantity = (int)GetObjectFromCertainMethod("get_Quantity");
-            Assert.AreEqual(1, resultQuantity);
+            long quantity = (long)GetObjectFromCertainMethod("get_Quantity", _methodsShopReg, _objShopReg);
+            long difference = 5L;
+            SetObjectInCertainMethod("SubtractQuantity", _methodsShopReg, _objShopReg, difference);
+            long resultQuantity = (long)GetObjectFromCertainMethod("get_Quantity", _methodsShopReg, _objShopReg);
+            Assert.AreEqual(quantity - difference, resultQuantity);
         }
 
         [TestMethod]
         public void GetPriceTest()
         {
-            int resultPrice = (int)GetObjectFromCertainMethod("get_Price");
-            Assert.AreEqual(100, resultPrice);
+            long resultPrice = (long)GetObjectFromCertainMethod("get_Price", _methodsShopReg, _objShopReg);
+            Assert.AreEqual(100L, resultPrice);
         }
 
         [TestMethod]
         public void SetPriceTest()
         {
-            SetObjectInCertainMethod("set_Price", 200);
-            int resultPrice = (int)GetObjectFromCertainMethod("get_Price");
-            Assert.AreEqual(200, resultPrice);
+            SetObjectInCertainMethod("set_Price", _methodsShopReg, _objShopReg, 200L);
+            long resultPrice = (long)GetObjectFromCertainMethod("get_Price", _methodsShopReg, _objShopReg);
+            Assert.AreEqual(200L, resultPrice);
         }
     }
 }

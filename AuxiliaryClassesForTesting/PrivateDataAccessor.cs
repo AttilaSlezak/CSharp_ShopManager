@@ -6,7 +6,7 @@ namespace AuxiliaryClassesForTesting
 {
     public class PrivateDataAccessor
     {
-        public static object GetObjectFromCertainMethod(string methodName, MethodInfo[] methods, Object fromObj, Object arg)
+        public static object GetObjectFromCertainMethod(string methodName, MethodInfo[] methods, object fromObj, object arg)
         {
             object result = null;
             foreach (MethodInfo oneMethod in methods)
@@ -23,18 +23,26 @@ namespace AuxiliaryClassesForTesting
             return result;
         }
 
-        public static object GetObjectFromCertainMethod(string methodName, MethodInfo[] methods, Object fromObj)
+        public static object GetObjectFromCertainMethod(string methodName, MethodInfo[] methods, object fromObj)
         {
             return GetObjectFromCertainMethod(methodName, methods, fromObj, null);
         }
 
-        private void SetObjectInCertainMethod(string methodName, MethodInfo[] methods, Object fromObj, Object newObj)
+        public static void SetObjectInCertainMethod(string methodName, MethodInfo[] methods, object fromObj, object newObj)
         {
             foreach (MethodInfo oneMethod in methods)
             {
                 if (oneMethod.Name == methodName)
                 {
-                    oneMethod.Invoke(fromObj, new object[] { newObj });
+                    if (newObj.GetType() == typeof(object[]))
+                    {
+                        object[] newObjArray = (object[])newObj;
+                        oneMethod.Invoke(fromObj, newObjArray);
+                    }
+                    else
+                    {
+                        oneMethod.Invoke(fromObj, new object[] { newObj });
+                    }
                     break;
                 }
             }

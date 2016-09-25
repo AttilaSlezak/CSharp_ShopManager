@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shop
 {
-    class LongLifeMilk : Milk
+    public class LongLifeMilk : Milk
     {
         public LongLifeMilk(long barcode, int cubicCapacity, String producer, DateTime bestBefore, double fatContent) 
             : base(barcode, cubicCapacity, producer, bestBefore, fatContent)

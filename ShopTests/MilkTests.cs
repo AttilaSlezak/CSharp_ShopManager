@@ -24,7 +24,7 @@ namespace Shop.Tests
         }
 
         [TestMethod()]
-        public void GetBarcode()
+        public void GetBarcodeTest()
         {
             Assert.AreEqual(101L, testMilk.Barcode);
         }
