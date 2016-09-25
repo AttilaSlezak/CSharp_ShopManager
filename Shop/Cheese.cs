@@ -24,7 +24,7 @@ namespace Shop
         {
             return "Cheese{" +
                 "barcode: " + Barcode +
-                ", weight: " + _weight + " kg" +
+                ", weight: " + _weight + " g" +
                 ", producer: '" + Producer + "'" +
                 ", best before: " + BestBefore +
                 ", fat content: " + _fatContent + "%}";

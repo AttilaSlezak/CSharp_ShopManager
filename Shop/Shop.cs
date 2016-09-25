@@ -67,9 +67,9 @@ namespace Shop
             _foodCounter.Remove(barcode);
         }
 
-        public void BuyFood(long barCode, long quantity)
+        public void BuyFood(long barcode, long quantity)
         {
-            ShopRegister shopReg = (ShopRegister)_foodCounter[barCode];
+            ShopRegister shopReg = (ShopRegister)_foodCounter[barcode];
             if (shopReg != null)
             {
                 shopReg.SubtractQuantity(quantity);

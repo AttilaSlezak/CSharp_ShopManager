@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopNUnitTests", "ShopNunit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopXUnitTests", "ShopXUnitTests\ShopXUnitTests.csproj", "{A046AFFE-735A-443D-BB62-C8A31108843A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockObjects", "MockObjects\MockObjects.csproj", "{BC12D074-C02D-4355-BB3D-5136CDE299F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuxiliaryClassesForTesting", "AuxiliaryClassesForTesting\AuxiliaryClassesForTesting.csproj", "{C352DF6D-54D6-41E3-A1AD-054371C876A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{A046AFFE-735A-443D-BB62-C8A31108843A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A046AFFE-735A-443D-BB62-C8A31108843A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A046AFFE-735A-443D-BB62-C8A31108843A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC12D074-C02D-4355-BB3D-5136CDE299F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC12D074-C02D-4355-BB3D-5136CDE299F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC12D074-C02D-4355-BB3D-5136CDE299F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC12D074-C02D-4355-BB3D-5136CDE299F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C352DF6D-54D6-41E3-A1AD-054371C876A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C352DF6D-54D6-41E3-A1AD-054371C876A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C352DF6D-54D6-41E3-A1AD-054371C876A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C352DF6D-54D6-41E3-A1AD-054371C876A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
