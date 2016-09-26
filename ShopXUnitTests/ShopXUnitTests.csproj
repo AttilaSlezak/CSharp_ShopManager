@@ -59,11 +59,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheeseTests.cs" />
     <Compile Include="FoodTests.cs" />
+    <Compile Include="LongLifeMilkTests.cs" />
     <Compile Include="MilkFactoryTests.cs" />
     <Compile Include="MilkTests.cs" />
     <Compile Include="PrivateDataAccessorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SemiLongLifeMilkTests.cs" />
     <Compile Include="ShopRegisterTests.cs" />
     <Compile Include="ShopTests.cs" />
   </ItemGroup>

@@ -5,6 +5,7 @@ using MockObjects;
 
 namespace ShopNunitTests
 {
+    [TestFixture]
     class FoodTests
     {
         private Food _testFood;

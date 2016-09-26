@@ -6,6 +6,7 @@ using static AuxiliaryClassesForTesting.PrivateDataAccessor;
 
 namespace ShopNunitTests
 {
+    [TestFixture]
     class ShopRegisterTests
     {
         private MethodInfo[] _methodsShopReg = typeof(Shop.Shop).GetNestedTypes(BindingFlags.NonPublic)[0].GetMethods();

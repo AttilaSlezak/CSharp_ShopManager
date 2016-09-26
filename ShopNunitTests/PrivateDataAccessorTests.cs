@@ -4,6 +4,7 @@ using static AuxiliaryClassesForTesting.PrivateDataAccessor;
 
 namespace ShopNunitTests
 {
+    [TestFixture]
     class PrivateDataAccessorTests
     {
         private String _testString;

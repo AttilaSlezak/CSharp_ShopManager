@@ -6,6 +6,7 @@ using static AuxiliaryClassesForTesting.PrivateDataAccessor;
 
 namespace Shop.ShopNunitTests
 {
+    [TestFixture]
     class ShopTests
     {
         private MethodInfo[] _methodsShopPrivate = typeof(Shop).GetMethods(BindingFlags.NonPublic | BindingFlags.Instance);

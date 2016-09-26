@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Shop
 {
@@ -14,7 +11,7 @@ namespace Shop
         public double Weight { get { return _weight; } }
         public double FatContent { get { return _fatContent; } }
 
-        public Cheese(long barcode, double weight, String producer, DateTime bestBefore, double fatContent) : base(barcode, producer, bestBefore)
+        public Cheese(long barcode, double weight, string producer, DateTime bestBefore, double fatContent) : base(barcode, producer, bestBefore)
         {
             _weight = weight;
             _fatContent = fatContent;

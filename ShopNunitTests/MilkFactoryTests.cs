@@ -4,6 +4,7 @@ using Shop;
 
 namespace ShopNunitTests
 {
+    [TestFixture]
     class MilkFactoryTests
     {
         [Test]
